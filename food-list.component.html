@@ -1,0 +1,71 @@
+
+<div>
+  <input type="text" placeholder="Enter Food Name" #input class = "search"> <span>
+    <button (click)="search(input.value)" class="searchButton">SEARCH</button>
+</span>
+</div>
+<menu>
+  <button id="updateDetails"(click)="onOpen()" class="All-button" >Add New Food</button>
+</menu>
+
+
+<div class="row">
+  <div class="column">
+    <div *ngIf=" dialog === 0" class="container-new">
+      <p><label>
+        <div>
+          <input type="text" placeholder="Enter Food Name" #names class="input "> Food Name
+        </div><br>
+        <div>
+          <input type="text" placeholder="Enter Calorie" #calories class="input"> Calorie
+        </div><br>
+        <div>
+          <input type="text" placeholder="Image Url of Food" #images class="input"> Image
+        </div>
+      </label></p>
+      <menu>
+        <button value="cancel" (click) = "onClose()" class="All-button">Cancel</button>
+        <button id="confirmBtn" (click)="addFood(names.value,calories.value,images.value)" class="All-button">Submit</button>
+      </menu>
+    </div>  
+    <div>
+        <div class="container">
+            <div class="wrapper">
+                <div *ngFor="let item of Foodlist;let index=index">
+                   <div class="item">
+                       <div class="row">
+                        <div class="column">
+                          <img src={{Foodlist[index].image}} alt="Image" style="width:87%;">
+                        </div>
+                        <div class="column fontsize">Food Name :
+                          {{Foodlist[index].foodName}}
+                        </div>
+                        <div class="column fontsize">Calorie :
+                          {{Foodlist[index].calorie}}
+                        </div>
+                        <menu>
+                            <button class="All-button" (click)="todayList(Foodlist[index].foodName)">Add to Today's List</button>
+                          </menu>
+                      </div>
+                   </div>
+            </div>
+        </div>
+        </div>
+    </div>
+
+  </div>
+  <div class="column1">
+      <div class="container-todaylist">
+      <h1>Today's Food</h1>
+      <div *ngFor="let item of todaysList;let index=index">
+        <li class = "fontsize">{{ todaysList[index].name }} x {{ todaysList[index].no_of_times }}</li>
+        </div>
+      <h1>Total Calorie</h1>
+      <h1>{{ totalCalorie }}</h1>
+  </div>
+
+  </div>
+</div>
+
+  
+ 
